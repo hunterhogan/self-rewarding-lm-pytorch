@@ -157,7 +157,7 @@ Score: {{ reward }}
 
 def create_parse_reward_fn(reward_regex_template):
     assert find_variables_from_jinja_template(reward_regex_template) == {'reward'}, 'reward template must include "score" variable'
-    reward_regex_str = jinja2_env.from_string(reward_regex_template).render(reward = "([0-9\.]+)")
+    reward_regex_str = jinja2_env.from_string(reward_regex_template).render(reward = r"([0-9\.]+)")
 
     # @always(lambda: randrange(0, 10))
     def parse_reward_fn(llm_response: str) -> float:
